@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "heft-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/heft/HeftWebPart.js",
+          "manifest": "./src/webparts/heft/HeftWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "HeftWebPartStrings": "lib/webparts/heft/loc/{locale}.js"
+  }
+}

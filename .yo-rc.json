@@ -1,0 +1,19 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "useGulp": false,
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "22.22.2",
+    "sdksVersions": {},
+    "version": "1.23.2",
+    "libraryName": "test-heft",
+    "libraryId": "9b1631f9-df42-4fc6-8042-4b46db10d69c",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "test-heft",
+    "solutionShortDescription": "test-heft description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
