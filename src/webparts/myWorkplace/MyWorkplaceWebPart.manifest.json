@@ -1,0 +1,22 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "83cde25f-f4f9-4e0c-b702-8178718ffcaf",
+  "alias": "MyWorkplaceWebPart",
+  "componentType": "WebPart",
+
+  "version": "*",
+  "manifestVersion": 2,
+
+  "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart", "TeamsPersonalApp", "TeamsTab", "SharePointFullPage"],
+  "supportsThemeVariants": true,
+
+  "preconfiguredEntries": [{
+    "groupId": "5c03119e-3074-46fd-976b-c60198311f70",
+    "group": { "default": "Advanced" },
+    "title": { "default": "Mein Arbeitsplatz" },
+    "description": { "default": "Zeigt die naechsten Termine und die zuletzt geaenderten Dokumente der Site." },
+    "officeFabricIconFontName": "Page",
+    "properties": {}
+  }]
+}

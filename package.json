@@ -21,7 +21,14 @@
     "@microsoft/sp-property-pane": "1.23.2",
     "@microsoft/sp-webpart-base": "1.23.2",
     "@microsoft/sp-lodash-subset": "1.23.2",
-    "@microsoft/sp-office-ui-fabric-core": "1.23.2"
+    "@microsoft/sp-office-ui-fabric-core": "1.23.2",
+    "@microsoft/microsoft-graph-types": "^2.43.0",
+    "@pnp/graph": "^4.19.0",
+    "@pnp/sp": "^4.19.0",
+    "@reduxjs/toolkit": "^2.12.0",
+    "glb-sp-fx-core": "^1.8.0",
+    "react-redux": "^8.1.3",
+    "redux-thunk": "^3.1.0"
   },
   "devDependencies": {
     "@microsoft/eslint-plugin-spfx": "1.23.2",

@@ -2,17 +2,19 @@
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
   "version": "2.0",
   "bundles": {
-    "heft-web-part": {
+    "my-workplace-web-part": {
       "components": [
         {
-          "entrypoint": "./lib/webparts/heft/HeftWebPart.js",
-          "manifest": "./src/webparts/heft/HeftWebPart.manifest.json"
+          "entrypoint": "./lib/webparts/myWorkplace/MyWorkplaceWebPart.js",
+          "manifest": "./src/webparts/myWorkplace/MyWorkplaceWebPart.manifest.json"
         }
       ]
     }
   },
   "externals": {},
   "localizedResources": {
-    "HeftWebPartStrings": "lib/webparts/heft/loc/{locale}.js"
+    "MyWorkplaceWebPartStrings": "lib/webparts/myWorkplace/loc/{locale}.js",
+    "GLBSpFxCoreLibraryStrings": "node_modules/glb-sp-fx-core/lib/loc/{locale}.js",
+    "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js"
   }
 }

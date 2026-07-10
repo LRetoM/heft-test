@@ -1,0 +1,43 @@
+@import '~@fluentui/react/dist/sass/References.scss';
+
+.myWorkplace {
+  overflow: hidden;
+  padding: 1em;
+  color: "[theme:bodyText, default: #323130]";
+  color: var(--bodyText);
+}
+
+.section {
+  margin-bottom: 2em;
+}
+
+.empty {
+  color: "[theme:neutralSecondary, default: #666666]";
+  color: var(--neutralSecondary);
+}
+
+.event {
+  padding: 8px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.eventLocation {
+  font-size: 12px;
+  color: "[theme:neutralSecondary, default: #666666]";
+  color: var(--neutralSecondary);
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+
+  th {
+    text-align: left;
+    padding: 4px 8px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  td {
+    padding: 4px 8px;
+  }
+}
