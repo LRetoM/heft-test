@@ -2,9 +2,6 @@ import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
 import { CommonsState } from '../../stateModels/CommonsState';
 import { IMyWorkplaceComponentProperties } from '../../webparts/myWorkplace/IMyWorkplaceComponentProperties';
 
-// Draft<CommonsState> statt CommonsState: Immer reicht den State als Draft herein und
-// kann die PnP-Klassen (SPFI, GraphFI) nicht 1:1 auf CommonsState abbilden.
-// Die Feature-Reducer halten nur Plain Data und annotieren deshalb direkt mit ihrer State-Klasse.
 const commonsSlice = createSlice({
   name: 'commons',
   initialState: new CommonsState(),

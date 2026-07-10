@@ -21,7 +21,6 @@ export const UpcomingEventsComponent: React.FunctionComponent = () => {
     dispatch(LOADING_UPCOMING_EVENTS(await UpcomingEventsService.getUpcomingEvents(commonsState)));
   };
 
-  // Graph liefert die Startzeit als UTC ohne Zeitzonen-Suffix, deshalb das angehaengte "Z".
   const formatEventStart = (event: Event): string => {
     const startDate: Date = new Date(`${event.start.dateTime}Z`);
     return event.isAllDay ? startDate.toLocaleDateString() : startDate.toLocaleString();
