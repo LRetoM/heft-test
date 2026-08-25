@@ -11,7 +11,7 @@ export class UpcomingEventsService {
     let result: Event[] = [];
 
     try {
-      const rangeStart: Date = new Date();
+      const rangeStart: Date = new Date(); //dayjs 
       const rangeEnd: Date = new Date();
       rangeEnd.setDate(rangeEnd.getDate() + GRAPH_UPCOMING_EVENTS_DAYS);
 

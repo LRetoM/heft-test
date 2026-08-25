@@ -14,7 +14,7 @@ import { MyWorkplaceComponent } from './components/MyWorkplaceComponent';
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-export default class MyWorkplaceWebPart extends BaseClientSideWebPart<Record<string, never>> {
+export default class MyWorkplaceWebPart extends BaseClientSideWebPart<Record<string, never>> { //eigenes interface properties (siteUrl etc.)
 
   protected async onInit(): Promise<void> {
     return super.onInit();

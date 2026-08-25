@@ -14,7 +14,7 @@ import { SiteDocumentsComponent } from './siteDocumentsComponent/SiteDocumentsCo
 const coreLoggingService = new SpFxCoreLoggingService();
 const commonService = new SpFxCoreCommonService(coreLoggingService);
 
-export const MyWorkplaceComponent: React.FunctionComponent<IMyWorkplaceComponentProperties> = (properties) => {
+export const MyWorkplaceComponent: React.FunctionComponent<IMyWorkplaceComponentProperties> = (properties: IMyWorkplaceComponentProperties) => {  
   const dispatch = useAppDispatch();
   const commonsState: CommonsState = useAppSelector(state => state.commonsState);
 
