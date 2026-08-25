@@ -1,28 +1,23 @@
-import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CommonsState } from '../../stateModels/CommonsState';
-import { IMyWorkplaceComponentProperties } from '../../webparts/myWorkplace/IMyWorkplaceComponentProperties';
+import { IApiExplorerComponentProperties } from '../../webparts/apiExplorer/IApiExplorerComponentProperties';
 
 const commonsSlice = createSlice({
   name: 'commons',
   initialState: new CommonsState(),
   reducers: {
-    LOADING_COMMONS(state: Draft<CommonsState>, action: PayloadAction<IMyWorkplaceComponentProperties>) {
-      return {
-        ...state,
-        SharePointConnection: action.payload.SharePointConnection,
-        GraphConnection: action.payload.GraphConnection,
-        Context: action.payload.Context,
-        IsInitialLoading: true,
-        HasAppError: action.payload.SharePointConnection === undefined
-          || action.payload.GraphConnection === undefined
-          || action.payload.Context === undefined
-      };
+    LOADING_COMMONS(state, action: PayloadAction<IApiExplorerComponentProperties>) {
+      state.SharepointConnection = action.payload.SharepointConnection;
+      state.GraphConnection = action.payload.GraphConnection;
+      state.Context = action.payload.Context;
+      state.IsInitialLoading = true;
+      state.HasAppError = action.payload.SharepointConnection === undefined || action.payload.GraphConnection === undefined || action.payload.Context === undefined;
     },
-    LOADING_COMMONS_DONE(state: Draft<CommonsState>) {
-      return { ...state, IsInitialLoading: false };
+    LOADING_COMMONS_DONE(state) {
+      state.IsInitialLoading = false;
     },
-    ENABLE_ERROR(state: Draft<CommonsState>) {
-      return { ...state, HasAppError: true };
+    ENABLE_ERROR(state) {
+      state.HasAppError = true;
     }
   }
 });

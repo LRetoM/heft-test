@@ -1,5 +1,8 @@
 import '@pnp/sp/webs';
+import '@pnp/sp/sites';
+import '@pnp/sp/lists';
 import '@pnp/graph/users';
+import '@pnp/graph/groups';
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import store, { AppDispatch, RootState } from '../../redux/Store';
@@ -8,23 +11,23 @@ import { Version } from '@microsoft/sp-core-library';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { graphfi, SPFx as GraphSPFx } from '@pnp/graph';
 import { spfi, SPFx as SPSPFx } from '@pnp/sp';
-import { IMyWorkplaceComponentProperties } from './IMyWorkplaceComponentProperties';
-import { MyWorkplaceComponent } from './components/MyWorkplaceComponent';
+import { IApiExplorerComponentProperties } from './IApiExplorerComponentProperties';
+import { ApiExplorerComponent } from './components/ApiExplorerComponent';
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-export default class MyWorkplaceWebPart extends BaseClientSideWebPart<Record<string, never>> { //eigenes interface properties (siteUrl etc.)
+export default class ApiExplorerWebPart extends BaseClientSideWebPart<Record<string, never>> {
 
   protected async onInit(): Promise<void> {
     return super.onInit();
   }
 
   public render(): void {
-    const element: React.ReactElement<IMyWorkplaceComponentProperties> = React.createElement(
-      MyWorkplaceComponent,
+    const element: React.ReactElement<IApiExplorerComponentProperties> = React.createElement(
+      ApiExplorerComponent,
       {
-        SharePointConnection: spfi().using(SPSPFx(this.context)),
+        SharepointConnection: spfi().using(SPSPFx(this.context)),
         GraphConnection: graphfi().using(GraphSPFx(this.context)),
         Context: this.context
       }

@@ -2,18 +2,18 @@
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
   "version": "2.0",
   "bundles": {
-    "my-workplace-web-part": {
+    "api-explorer-web-part": {
       "components": [
         {
-          "entrypoint": "./lib/webparts/myWorkplace/MyWorkplaceWebPart.js",
-          "manifest": "./src/webparts/myWorkplace/MyWorkplaceWebPart.manifest.json"
+          "entrypoint": "./lib/webparts/apiExplorer/ApiExplorerWebPart.js",
+          "manifest": "./src/webparts/apiExplorer/ApiExplorerWebPart.manifest.json"
         }
       ]
     }
   },
   "externals": {},
   "localizedResources": {
-    "MyWorkplaceWebPartStrings": "lib/webparts/myWorkplace/loc/{locale}.js",
+    "ApiExplorerWebPartStrings": "lib/webparts/apiExplorer/loc/{locale}.js",
     "GLBSpFxCoreLibraryStrings": "node_modules/glb-sp-fx-core/lib/loc/{locale}.js",
     "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js"
   }
