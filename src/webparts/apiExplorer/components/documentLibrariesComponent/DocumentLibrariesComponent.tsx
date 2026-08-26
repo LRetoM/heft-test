@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as strings from 'ApiExplorerWebPartStrings';
 import styles from '../ApiExplorer.module.scss';
 import { Link, Panel, PanelType, PrimaryButton, Spinner, SpinnerSize } from '@fluentui/react';
-import { LoggingService } from '../../../../services/LoggingService';
 import { useAppDispatch, useAppSelector } from '../../ApiExplorerWebPart';
 import { CommonsState } from '../../../../stateModels/CommonsState';
 import { DocumentLibrariesState } from '../../../../stateModels/DocumentLibrariesState';
@@ -27,7 +26,7 @@ export const DocumentLibrariesComponent: React.FunctionComponent = () => {
   };
 
   React.useEffect(() => {
-    getDocumentLibraries().catch(async (error: Error) => LoggingService.handleError(error, 'DocumentLibrariesComponent:'));
+    getDocumentLibraries().catch(async (error: Error) => commonsState.SpFxCore.getSPFxCoreLoggingService().handleError(error, 'DocumentLibrariesComponent:'));
   }, []);
 
   const openPanel = (library: DocumentLibrary): void => {

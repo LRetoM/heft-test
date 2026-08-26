@@ -26,9 +26,9 @@ export const ApiExplorerComponent: React.FunctionComponent<IApiExplorerComponent
   }, []);
 
   React.useEffect(() => {
-    if (commonService.isUndefinedOrNull(commonsState.SharepointConnection) || commonService.isUndefinedOrNull(commonsState.GraphConnection)) return;
+    if (commonService.isUndefinedOrNull(commonsState.SharePointConnection) || commonService.isUndefinedOrNull(commonsState.SpFxCore)) return;
     dispatch(LOADING_COMMONS_DONE());
-  }, [commonsState.SharepointConnection, commonsState.GraphConnection]);
+  }, [commonsState.SharePointConnection, commonsState.SpFxCore]);
 
   if (commonsState.HasAppError) {
     return (

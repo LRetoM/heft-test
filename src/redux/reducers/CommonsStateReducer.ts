@@ -9,11 +9,11 @@ const commonsSlice = createSlice({
     LOADING_COMMONS(state, action: PayloadAction<IApiExplorerComponentProperties>) {
       return {
         ...state,
-        SharepointConnection: action.payload.SharepointConnection,
-        GraphConnection: action.payload.GraphConnection,
+        SharePointConnection: action.payload.SharePointConnection,
+        SpFxCore: action.payload.SpFxCore,
         Context: action.payload.Context,
         IsInitialLoading: true,
-        HasAppError: action.payload.SharepointConnection === undefined || action.payload.GraphConnection === undefined || action.payload.Context === undefined
+        HasAppError: action.payload.SharePointConnection === undefined || action.payload.SpFxCore === undefined || action.payload.Context === undefined
       };
     },
     LOADING_COMMONS_DONE(state) {

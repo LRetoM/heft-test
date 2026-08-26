@@ -1,8 +1,5 @@
-import '@pnp/graph/users';
 import { User } from '@microsoft/microsoft-graph-types';
 import { CommonsState } from '../stateModels/CommonsState';
-import { GraphSelectFields } from '../constants/GraphQueryConstants';
-import { LoggingService } from './LoggingService';
 
 export class UserService {
 
@@ -13,15 +10,17 @@ export class UserService {
     };
 
     try {
-      const graphUser: User = await commonsState.GraphConnection.me
-        .select(...GraphSelectFields.User)();
+      const [graphUser, siteUser] = await Promise.all([
+        commonsState.SpFxCore.getSPFxCoreUserService().getCurrentGraphUser(),
+        commonsState.SpFxCore.getSPFxCoreUserService().getCurrentUser()
+      ]);
 
       result = {
         GraphUser: graphUser,
-        SharePointUserDisplayName: commonsState.Context.pageContext.user.displayName || ''
+        SharePointUserDisplayName: siteUser?.Title || ''
       };
     } catch (error) {
-      await LoggingService.handleError(error, 'UserService: Fehler beim Laden des Benutzers.');
+      await commonsState.SpFxCore.getSPFxCoreLoggingService().handleError(error, 'UserService: Fehler beim Laden des Benutzers.');
     }
 
     return result;

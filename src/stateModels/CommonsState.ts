@@ -1,15 +1,15 @@
 import { SPFI } from '@pnp/sp';
-import { GraphFI } from '@pnp/graph';
+import { SpFxCore } from 'glb-sp-fx-core/lib/services/spFxCore/SpFxCore';
 export class CommonsState {
-  public SharepointConnection: SPFI;
-  public GraphConnection: GraphFI;
+  public SharePointConnection: SPFI;
+  public SpFxCore: SpFxCore;
   public Context: any;
   public IsInitialLoading: boolean;
   public HasAppError: boolean;
 
   constructor() {
-    this.SharepointConnection = undefined;
-    this.GraphConnection = undefined;
+    this.SharePointConnection = undefined;
+    this.SpFxCore = undefined;
     this.Context = undefined;
     this.IsInitialLoading = true;
     this.HasAppError = false;

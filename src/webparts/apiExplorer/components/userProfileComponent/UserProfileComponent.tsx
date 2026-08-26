@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as strings from 'ApiExplorerWebPartStrings';
 import { Spinner, SpinnerSize } from '@fluentui/react';
-import { LoggingService } from '../../../../services/LoggingService';
 import { useAppDispatch, useAppSelector } from '../../ApiExplorerWebPart';
 import { CommonsState } from '../../../../stateModels/CommonsState';
 import { UserState } from '../../../../stateModels/UserState';
@@ -19,7 +18,7 @@ export const UserProfileComponent: React.FunctionComponent = () => {
   };
 
   React.useEffect(() => {
-    getCurrentUser().catch(async (error: Error) => LoggingService.handleError(error, 'UserProfileComponent:'));
+    getCurrentUser().catch(async (error: Error) => commonsState.SpFxCore.getSPFxCoreLoggingService().handleError(error, 'UserProfileComponent:'));
   }, []);
 
   if (userState.IsLoading) {

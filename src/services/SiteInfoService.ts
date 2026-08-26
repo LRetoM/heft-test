@@ -3,7 +3,6 @@ import '@pnp/sp/sites';
 import '@pnp/sp/lists';
 import { CommonsState } from '../stateModels/CommonsState';
 import { SpListSelectFields, buildSpListFilter } from '../constants/SpQueryConstants';
-import { LoggingService } from './LoggingService';
 
 export class SiteInfoService {
 
@@ -16,9 +15,9 @@ export class SiteInfoService {
 
     try {
       const [web, site, lists] = await Promise.all([
-        commonsState.SharepointConnection.web.select(...SpListSelectFields.Web)(),
-        commonsState.SharepointConnection.site.select(...SpListSelectFields.Site)(),
-        commonsState.SharepointConnection.web.lists
+        commonsState.SharePointConnection.web.select(...SpListSelectFields.Web)(),
+        commonsState.SharePointConnection.site.select(...SpListSelectFields.Site)(),
+        commonsState.SharePointConnection.web.lists
           .select(...SpListSelectFields.Lists)
           .filter(buildSpListFilter(false))()
       ]);
@@ -29,7 +28,7 @@ export class SiteInfoService {
         SpLists: lists || []
       };
     } catch (error) {
-      await LoggingService.handleError(error, 'SiteInfoService: Fehler beim Laden der Site-Informationen.');
+      await commonsState.SpFxCore.getSPFxCoreLoggingService().handleError(error, 'SiteInfoService: Fehler beim Laden der Site-Informationen.');
     }
 
     return result;

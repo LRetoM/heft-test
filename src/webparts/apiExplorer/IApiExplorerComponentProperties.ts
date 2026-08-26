@@ -1,9 +1,9 @@
 import { SPFI } from '@pnp/sp';
-import { GraphFI } from '@pnp/graph';
+import { SpFxCore } from 'glb-sp-fx-core/lib/services/spFxCore/SpFxCore';
 import { WebPartContext } from '@microsoft/sp-webpart-base';
 
 export interface IApiExplorerComponentProperties {
-  SharepointConnection: SPFI;
-  GraphConnection: GraphFI;
+  SharePointConnection: SPFI;
+  SpFxCore: SpFxCore;
   Context: WebPartContext;
 }

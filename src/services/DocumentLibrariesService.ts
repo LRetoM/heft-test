@@ -2,7 +2,6 @@ import '@pnp/sp/lists';
 import { CommonsState } from '../stateModels/CommonsState';
 import { SpListSelectFields, buildSpListFilter } from '../constants/SpQueryConstants';
 import { DocumentLibrary } from '../models/DocumentLibrary';
-import { LoggingService } from './LoggingService';
 
 export class DocumentLibrariesService {
 
@@ -10,13 +9,13 @@ export class DocumentLibrariesService {
     let result: DocumentLibrary[] = [];
 
     try {
-      const lists = await commonsState.SharepointConnection.web.lists
+      const lists = await commonsState.SharePointConnection.web.lists
         .select(...SpListSelectFields.DocumentLibraries)
         .filter(buildSpListFilter(false, 101))();
 
       result = lists || [];
     } catch (error) {
-      await LoggingService.handleError(error, 'DocumentLibrariesService: Fehler beim Laden der Document Libraries.');
+      await commonsState.SpFxCore.getSPFxCoreLoggingService().handleError(error, 'DocumentLibrariesService: Fehler beim Laden der Document Libraries.');
     }
 
     return result;
@@ -27,18 +26,18 @@ export class DocumentLibrariesService {
 
     try {
       if (library.Id === undefined) {
-        const addedList = await commonsState.SharepointConnection.web.lists.add(library.Title, library.Description, 101);
+        const addedList = await commonsState.SharePointConnection.web.lists.add(library.Title, library.Description, 101);
 
         result = { Id: addedList.Id, Title: addedList.Title, Description: addedList.Description, DefaultViewUrl: addedList.DefaultViewUrl };
       } else {
-        await commonsState.SharepointConnection.web.lists.getById(library.Id).update({
+        await commonsState.SharePointConnection.web.lists.getById(library.Id).update({
           Title: library.Title,
           Description: library.Description
         });
         result = library;
       }
     } catch (error) {
-      await LoggingService.handleError(error, 'DocumentLibrariesService: Fehler beim Speichern der Document Library.');
+      await commonsState.SpFxCore.getSPFxCoreLoggingService().handleError(error, 'DocumentLibrariesService: Fehler beim Speichern der Document Library.');
     }
 
     return result;
@@ -48,10 +47,10 @@ export class DocumentLibrariesService {
     let success = false;
 
     try {
-      await commonsState.SharepointConnection.web.lists.getById(library.Id).recycle();
+      await commonsState.SharePointConnection.web.lists.getById(library.Id).recycle();
       success = true;
     } catch (error) {
-      await LoggingService.handleError(error, 'DocumentLibrariesService: Fehler beim Löschen der Document Library.');
+      await commonsState.SpFxCore.getSPFxCoreLoggingService().handleError(error, 'DocumentLibrariesService: Fehler beim Löschen der Document Library.');
     }
 
     return success;

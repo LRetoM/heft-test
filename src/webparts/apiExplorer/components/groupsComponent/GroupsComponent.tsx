@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as strings from 'ApiExplorerWebPartStrings';
 import { Spinner, SpinnerSize } from '@fluentui/react';
-import { LoggingService } from '../../../../services/LoggingService';
 import { useAppDispatch, useAppSelector } from '../../ApiExplorerWebPart';
 import { CommonsState } from '../../../../stateModels/CommonsState';
 import { GroupState } from '../../../../stateModels/GroupState';
@@ -19,7 +18,7 @@ export const GroupsComponent: React.FunctionComponent = () => {
   };
 
   React.useEffect(() => {
-    getUserGroups().catch(async (error: Error) => LoggingService.handleError(error, 'GroupsComponent:'));
+    getUserGroups().catch(async (error: Error) => commonsState.SpFxCore.getSPFxCoreLoggingService().handleError(error, 'GroupsComponent:'));
   }, []);
 
   if (groupsState.IsLoading) {

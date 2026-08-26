@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as strings from 'ApiExplorerWebPartStrings';
 import { Spinner, SpinnerSize } from '@fluentui/react';
-import { LoggingService } from '../../../../services/LoggingService';
 import { useAppDispatch, useAppSelector } from '../../ApiExplorerWebPart';
 import { CommonsState } from '../../../../stateModels/CommonsState';
 import { SiteInfoState } from '../../../../stateModels/SiteInfoState';
@@ -19,7 +18,7 @@ export const SiteInfoComponent: React.FunctionComponent = () => {
   };
 
   React.useEffect(() => {
-    getSiteInfo().catch(async (error: Error) => LoggingService.handleError(error, 'SiteInfoComponent:'));
+    getSiteInfo().catch(async (error: Error) => commonsState.SpFxCore.getSPFxCoreLoggingService().handleError(error, 'SiteInfoComponent:'));
   }, []);
 
   if (siteInfoState.IsLoading) {
