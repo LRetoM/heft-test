@@ -14,8 +14,8 @@ import { GroupsComponent } from './groupsComponent/GroupsComponent';
 import { SiteListsComponent } from './siteListsComponent/SiteListsComponent';
 import { DocumentLibrariesComponent } from './documentLibrariesComponent/DocumentLibrariesComponent';
 
-const coreLoggingService = new SpFxCoreLoggingService();
-const commonService = new SpFxCoreCommonService(coreLoggingService);
+const coreLoggingService: SpFxCoreLoggingService = new SpFxCoreLoggingService();
+const commonService: SpFxCoreCommonService = new SpFxCoreCommonService(coreLoggingService);
 
 export const ApiExplorerComponent: React.FunctionComponent<IApiExplorerComponentProperties> = (properties) => {
   const dispatch = useAppDispatch();

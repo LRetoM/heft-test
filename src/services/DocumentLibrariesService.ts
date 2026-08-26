@@ -1,4 +1,5 @@
 import '@pnp/sp/lists';
+import { IListInfo } from '@pnp/sp/lists';
 import { CommonsState } from '../stateModels/CommonsState';
 import { SpListSelectFields, buildSpListFilter } from '../constants/SpQueryConstants';
 import { DocumentLibrary } from '../models/DocumentLibrary';
@@ -9,7 +10,7 @@ export class DocumentLibrariesService {
     let result: DocumentLibrary[] = [];
 
     try {
-      const lists = await commonsState.SharePointConnection.web.lists
+      const lists: IListInfo[] = await commonsState.SharePointConnection.web.lists
         .select(...SpListSelectFields.DocumentLibraries)
         .filter(buildSpListFilter(false, 101))();
 
@@ -26,7 +27,7 @@ export class DocumentLibrariesService {
 
     try {
       if (library.Id === undefined) {
-        const addedList = await commonsState.SharePointConnection.web.lists.add(library.Title, library.Description, 101);
+        const addedList: IListInfo = await commonsState.SharePointConnection.web.lists.add(library.Title, library.Description, 101);
 
         result = { Id: addedList.Id, Title: addedList.Title, Description: addedList.Description, DefaultViewUrl: addedList.DefaultViewUrl };
       } else {

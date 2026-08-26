@@ -1,6 +1,9 @@
 import '@pnp/sp/webs';
 import '@pnp/sp/sites';
 import '@pnp/sp/lists';
+import { IWebInfo } from '@pnp/sp/webs';
+import { ISiteInfo } from '@pnp/sp/sites/types';
+import { IListInfo } from '@pnp/sp/lists';
 import { CommonsState } from '../stateModels/CommonsState';
 import { SpListSelectFields, buildSpListFilter } from '../constants/SpQueryConstants';
 
@@ -14,7 +17,7 @@ export class SiteInfoService {
     };
 
     try {
-      const [web, site, lists] = await Promise.all([
+      const [web, site, lists]: [IWebInfo, ISiteInfo, IListInfo[]] = await Promise.all([
         commonsState.SharePointConnection.web.select(...SpListSelectFields.Web)(),
         commonsState.SharePointConnection.site.select(...SpListSelectFields.Site)(),
         commonsState.SharePointConnection.web.lists
