@@ -7,17 +7,18 @@ import { useAppDispatch, useAppSelector } from '../../ApiExplorerWebPart';
 import { CommonsState } from '../../../../stateModels/CommonsState';
 import { DocumentLibrariesState } from '../../../../stateModels/DocumentLibrariesState';
 import { DocumentLibrariesService } from '../../../../services/DocumentLibrariesService';
+import { DocumentLibrary } from '../../../../models/DocumentLibrary';
 import { LOADING_DOCUMENT_LIBRARIES, START_LOADING_DOCUMENT_LIBRARIES } from '../../../../redux/reducers/DocumentLibrariesStateReducer';
 import { DocumentLibraryEditComponent } from './DocumentLibraryEditComponent';
 
-const EMPTY_LIBRARY: { Id: string; Title: string; Description: string; DefaultViewUrl: string } = { Id: undefined, Title: '', Description: '', DefaultViewUrl: undefined };
+const EMPTY_LIBRARY: DocumentLibrary = new DocumentLibrary();
 
 export const DocumentLibrariesComponent: React.FunctionComponent = () => {
   const dispatch = useAppDispatch();
   const commonsState: CommonsState = useAppSelector(state => state.commonsState);
   const documentLibrariesState: DocumentLibrariesState = useAppSelector(state => state.documentLibrariesState);
 
-  const [selectedLibrary, setSelectedLibrary] = React.useState<{ Id: string; Title: string; Description: string; DefaultViewUrl: string }>(undefined);
+  const [selectedLibrary, setSelectedLibrary] = React.useState<DocumentLibrary>(undefined);
   const [isPanelOpen, setIsPanelOpen] = React.useState(false);
 
   const getDocumentLibraries = async (): Promise<void> => {
@@ -29,7 +30,7 @@ export const DocumentLibrariesComponent: React.FunctionComponent = () => {
     getDocumentLibraries().catch(async (error: Error) => LoggingService.handleError(error, 'DocumentLibrariesComponent:'));
   }, []);
 
-  const openPanel = (library: { Id: string; Title: string; Description: string; DefaultViewUrl: string }): void => {
+  const openPanel = (library: DocumentLibrary): void => {
     setSelectedLibrary(library);
     setIsPanelOpen(true);
   };

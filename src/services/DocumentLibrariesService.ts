@@ -1,12 +1,13 @@
 import '@pnp/sp/lists';
 import { CommonsState } from '../stateModels/CommonsState';
 import { SpListSelectFields, buildSpListFilter } from '../constants/SpQueryConstants';
+import { DocumentLibrary } from '../models/DocumentLibrary';
 import { LoggingService } from './LoggingService';
 
 export class DocumentLibrariesService {
 
-  public static async getDocumentLibraries(commonsState: CommonsState): Promise<{ Id: string; Title: string; Description: string; DefaultViewUrl: string }[]> {
-    let result: { Id: string; Title: string; Description: string; DefaultViewUrl: string }[] = [];
+  public static async getDocumentLibraries(commonsState: CommonsState): Promise<DocumentLibrary[]> {
+    let result: DocumentLibrary[] = [];
 
     try {
       const lists = await commonsState.SharepointConnection.web.lists
@@ -21,8 +22,8 @@ export class DocumentLibrariesService {
     return result;
   }
 
-  public static async saveAndUpdate(commonsState: CommonsState, library: { Id: string; Title: string; Description: string; DefaultViewUrl: string }): Promise<{ Id: string; Title: string; Description: string; DefaultViewUrl: string }> {
-    let result: { Id: string; Title: string; Description: string; DefaultViewUrl: string } = undefined;
+  public static async saveAndUpdate(commonsState: CommonsState, library: DocumentLibrary): Promise<DocumentLibrary> {
+    let result: DocumentLibrary = undefined;
 
     try {
       if (library.Id === undefined) {
@@ -43,7 +44,7 @@ export class DocumentLibrariesService {
     return result;
   }
 
-  public static async deleteDocumentLibrary(commonsState: CommonsState, library: { Id: string; Title: string; Description: string; DefaultViewUrl: string }): Promise<boolean> {
+  public static async deleteDocumentLibrary(commonsState: CommonsState, library: DocumentLibrary): Promise<boolean> {
     let success = false;
 
     try {

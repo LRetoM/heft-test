@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
 import { DocumentLibrariesState } from '../../stateModels/DocumentLibrariesState';
+import { DocumentLibrary } from '../../models/DocumentLibrary';
 
 const documentLibrariesSlice = createSlice({
   name: 'documentLibraries',
@@ -8,14 +9,14 @@ const documentLibrariesSlice = createSlice({
     START_LOADING_DOCUMENT_LIBRARIES(state: DocumentLibrariesState) {
       return { ...state, IsLoading: true };
     },
-    LOADING_DOCUMENT_LIBRARIES(state: DocumentLibrariesState, action: PayloadAction<{ Id: string; Title: string; Description: string; DefaultViewUrl: string }[]>) {
+    LOADING_DOCUMENT_LIBRARIES(state: DocumentLibrariesState, action: PayloadAction<DocumentLibrary[]>) {
       return {
         ...state,
         Libraries: action.payload,
         IsLoading: false
       };
     },
-    ADD_UPDATE_DOCUMENT_LIBRARY(state: DocumentLibrariesState, action: PayloadAction<{ Id: string; Title: string; Description: string; DefaultViewUrl: string }>) {
+    ADD_UPDATE_DOCUMENT_LIBRARY(state: DocumentLibrariesState, action: PayloadAction<DocumentLibrary>) {
       const currentLibraries = current(state).Libraries;
       const existingLibrary = currentLibraries.filter(library => library.Id === action.payload.Id)[0];
 
@@ -26,7 +27,7 @@ const documentLibrariesSlice = createSlice({
           : currentLibraries.map(library => library.Id === action.payload.Id ? action.payload : library)
       };
     },
-    REMOVE_DOCUMENT_LIBRARY(state: DocumentLibrariesState, action: PayloadAction<{ Id: string; Title: string; Description: string; DefaultViewUrl: string }>) {
+    REMOVE_DOCUMENT_LIBRARY(state: DocumentLibrariesState, action: PayloadAction<DocumentLibrary>) {
       return {
         ...state,
         Libraries: current(state).Libraries.filter(library => library.Id !== action.payload.Id)

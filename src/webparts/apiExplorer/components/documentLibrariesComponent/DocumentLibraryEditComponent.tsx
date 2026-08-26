@@ -4,10 +4,11 @@ import { DefaultButton, MessageBar, MessageBarType, PrimaryButton, TextField } f
 import { useAppDispatch, useAppSelector } from '../../ApiExplorerWebPart';
 import { CommonsState } from '../../../../stateModels/CommonsState';
 import { DocumentLibrariesService } from '../../../../services/DocumentLibrariesService';
+import { DocumentLibrary } from '../../../../models/DocumentLibrary';
 import { ADD_UPDATE_DOCUMENT_LIBRARY, REMOVE_DOCUMENT_LIBRARY } from '../../../../redux/reducers/DocumentLibrariesStateReducer';
 
 interface IDocumentLibraryEditComponentProperties {
-  currentLibrary: { Id: string; Title: string; Description: string; DefaultViewUrl: string };
+  currentLibrary: DocumentLibrary;
   closePanel: VoidFunction;
 }
 
@@ -57,13 +58,13 @@ export const DocumentLibraryEditComponent: React.FunctionComponent<IDocumentLibr
     <div>
       <TextField
         label={strings.DocumentLibraries.Panel.Fields.Title} required
-        value={tempLibrary.Title}
+        value={tempLibrary.Title === undefined ? '' : tempLibrary.Title}
         disabled={isSaving}
         onChange={(event, value) => setTempLibrary({ ...tempLibrary, Title: value })}
       />
       <TextField
         label={strings.DocumentLibraries.Panel.Fields.Description}
-        value={tempLibrary.Description}
+        value={tempLibrary.Description === undefined ? '' : tempLibrary.Description}
         disabled={isSaving}
         multiline
         onChange={(event, value) => setTempLibrary({ ...tempLibrary, Description: value })}
