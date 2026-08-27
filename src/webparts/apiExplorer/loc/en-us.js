@@ -27,7 +27,26 @@ define([], function() {
     },
     Groups: {
       Title: 'User Groups',
-      Loading: 'Loading groups...'
+      Loading: 'Loading groups...',
+      Buttons: {
+        New: 'Join Group',
+        Join: 'Join',
+        Delete: 'Leave Group',
+        Cancel: 'Cancel'
+      },
+      Panel: {
+        CreateTitle: 'Join Group',
+        EditTitle: 'Group Membership',
+        Fields: {
+          GroupId: 'Group ID',
+          DisplayName: 'Name'
+        },
+        ErrorMessages: {
+          EmptyGroupId: 'Group ID is required.',
+          ErrorWhileJoining: 'Error while joining the group.',
+          ErrorWhileLeaving: 'Error while leaving the group.'
+        }
+      }
     },
     SiteLists: {
       Title: 'Available Lists on this Site',

@@ -14,7 +14,7 @@
       },
       {
         "resource": "Microsoft Graph",
-        "scope": "GroupMember.Read.All"
+        "scope": "GroupMember.ReadWrite.All"
       }
     ],
     "developer": {

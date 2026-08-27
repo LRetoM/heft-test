@@ -27,6 +27,25 @@ declare interface IApiExplorerWebPartStrings {
   Groups: {
     Title: string;
     Loading: string;
+    Buttons: {
+      New: string;
+      Join: string;
+      Delete: string;
+      Cancel: string;
+    };
+    Panel: {
+      CreateTitle: string;
+      EditTitle: string;
+      Fields: {
+        GroupId: string;
+        DisplayName: string;
+      };
+      ErrorMessages: {
+        EmptyGroupId: string;
+        ErrorWhileJoining: string;
+        ErrorWhileLeaving: string;
+      };
+    };
   };
   SiteLists: {
     Title: string;
