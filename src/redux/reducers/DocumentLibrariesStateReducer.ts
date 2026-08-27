@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
 import { DocumentLibrariesState } from '../../stateModels/DocumentLibrariesState';
-import { DocumentLibrary } from '../../models/DocumentLibrary';
+import { SharePointList } from '../../models/SharePointList';
 
 const documentLibrariesSlice = createSlice({
   name: 'documentLibraries',
@@ -9,14 +9,14 @@ const documentLibrariesSlice = createSlice({
     START_LOADING_DOCUMENT_LIBRARIES(state: DocumentLibrariesState) {
       return { ...state, IsLoading: true };
     },
-    LOADING_DOCUMENT_LIBRARIES(state: DocumentLibrariesState, action: PayloadAction<DocumentLibrary[]>) {
+    LOADING_DOCUMENT_LIBRARIES(state: DocumentLibrariesState, action: PayloadAction<SharePointList[]>) {
       return {
         ...state,
         Libraries: action.payload,
         IsLoading: false
       };
     },
-    ADD_UPDATE_DOCUMENT_LIBRARY(state: DocumentLibrariesState, action: PayloadAction<DocumentLibrary>) {
+    ADD_UPDATE_DOCUMENT_LIBRARY(state: DocumentLibrariesState, action: PayloadAction<SharePointList>) {
       const currentLibraries = current(state).Libraries;
       const existingLibrary = currentLibraries.filter(library => library.Id === action.payload.Id)[0];
 
@@ -27,7 +27,7 @@ const documentLibrariesSlice = createSlice({
           : currentLibraries.map(library => library.Id === action.payload.Id ? action.payload : library)
       };
     },
-    REMOVE_DOCUMENT_LIBRARY(state: DocumentLibrariesState, action: PayloadAction<DocumentLibrary>) {
+    REMOVE_DOCUMENT_LIBRARY(state: DocumentLibrariesState, action: PayloadAction<SharePointList>) {
       return {
         ...state,
         Libraries: current(state).Libraries.filter(library => library.Id !== action.payload.Id)

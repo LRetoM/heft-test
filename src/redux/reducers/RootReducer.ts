@@ -2,6 +2,7 @@ import commonsSlice from './CommonsStateReducer';
 import userSlice from './UserStateReducer';
 import groupsSlice from './GroupsStateReducer';
 import siteInfoSlice from './SiteInfoStateReducer';
+import siteListsSlice from './SiteListsStateReducer';
 import documentLibrariesSlice from './DocumentLibrariesStateReducer';
 import { combineReducers } from 'redux';
 
@@ -10,5 +11,6 @@ export default combineReducers({
   userState: userSlice.reducer,
   groupsState: groupsSlice.reducer,
   siteInfoState: siteInfoSlice.reducer,
+  siteListsState: siteListsSlice.reducer,
   documentLibrariesState: documentLibrariesSlice.reducer
 });

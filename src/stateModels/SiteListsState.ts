@@ -1,11 +1,11 @@
 import { SharePointList } from '../models/SharePointList';
 
-export class DocumentLibrariesState {
+export class SiteListsState {
   public IsLoading: boolean;
-  public Libraries: SharePointList[];
+  public Lists: SharePointList[];
 
   constructor() {
     this.IsLoading = true;
-    this.Libraries = [];
+    this.Lists = [];
   }
 }

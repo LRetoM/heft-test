@@ -56,6 +56,25 @@ declare interface IApiExplorerWebPartStrings {
       Template: string;
       Id: string;
     };
+    Buttons: {
+      New: string;
+      Save: string;
+      Delete: string;
+      Cancel: string;
+    };
+    Panel: {
+      CreateTitle: string;
+      EditTitle: string;
+      Fields: {
+        Title: string;
+        Description: string;
+      };
+      ErrorMessages: {
+        EmptyTitle: string;
+        ErrorWhileSaving: string;
+        ErrorWhileDeleting: string;
+      };
+    };
   };
   DocumentLibraries: {
     Title: string;

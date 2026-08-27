@@ -3,12 +3,13 @@ import * as strings from 'ApiExplorerWebPartStrings';
 import { DefaultButton, MessageBar, MessageBarType, PrimaryButton, TextField } from '@fluentui/react';
 import { useAppDispatch, useAppSelector } from '../../ApiExplorerWebPart';
 import { CommonsState } from '../../../../stateModels/CommonsState';
-import { DocumentLibrariesService } from '../../../../services/DocumentLibrariesService';
-import { DocumentLibrary } from '../../../../models/DocumentLibrary';
+import { SharePointListService } from '../../../../services/SharePointListService';
+import { SharePointList } from '../../../../models/SharePointList';
+import { SpListTemplates } from '../../../../constants/SpQueryConstants';
 import { ADD_UPDATE_DOCUMENT_LIBRARY, REMOVE_DOCUMENT_LIBRARY } from '../../../../redux/reducers/DocumentLibrariesStateReducer';
 
 interface IDocumentLibraryEditComponentProperties {
-  currentLibrary: DocumentLibrary;
+  currentLibrary: SharePointList;
   closePanel: VoidFunction;
 }
 
@@ -30,7 +31,7 @@ export const DocumentLibraryEditComponent: React.FunctionComponent<IDocumentLibr
 
     setErrorMessage(undefined);
     setIsSaving(true);
-    const library = await DocumentLibrariesService.saveAndUpdate(commonsState, tempLibrary);
+    const library = await SharePointListService.saveAndUpdate(commonsState, tempLibrary, SpListTemplates.DocumentLibrary);
     setIsSaving(false);
 
     if (library === undefined) {
@@ -43,7 +44,7 @@ export const DocumentLibraryEditComponent: React.FunctionComponent<IDocumentLibr
 
   const deleteLibrary = async (): Promise<void> => {
     setIsSaving(true);
-    const success = await DocumentLibrariesService.deleteDocumentLibrary(commonsState, tempLibrary);
+    const success = await SharePointListService.deleteList(commonsState, tempLibrary);
     setIsSaving(false);
 
     if (!success) {

@@ -56,6 +56,25 @@ define([], function() {
         Items: 'Items',
         Template: 'Template',
         Id: 'ID'
+      },
+      Buttons: {
+        New: 'Neue Liste',
+        Save: 'Speichern',
+        Delete: 'Löschen',
+        Cancel: 'Abbrechen'
+      },
+      Panel: {
+        CreateTitle: 'Neue Liste',
+        EditTitle: 'Liste bearbeiten',
+        Fields: {
+          Title: 'Titel',
+          Description: 'Beschreibung'
+        },
+        ErrorMessages: {
+          EmptyTitle: 'Titel ist erforderlich.',
+          ErrorWhileSaving: 'Fehler beim Speichern der Liste.',
+          ErrorWhileDeleting: 'Fehler beim Löschen der Liste.'
+        }
       }
     },
     DocumentLibraries: {

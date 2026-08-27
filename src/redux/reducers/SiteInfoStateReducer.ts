@@ -8,12 +8,11 @@ const siteInfoSlice = createSlice({
     START_LOADING_SITE_INFO(state: SiteInfoState) {
       return { ...state, IsLoading: true };
     },
-    LOADING_SITE_INFO(state: SiteInfoState, action: PayloadAction<{ Web: { Title: string; Url: string }; Site: { Url: string; Id: string }; SpLists: { Id: string; Title: string; ItemCount: number; BaseTemplate: number }[] }>) {
+    LOADING_SITE_INFO(state: SiteInfoState, action: PayloadAction<{ Web: { Title: string; Url: string }; Site: { Url: string; Id: string } }>) {
       return {
         ...state,
         Web: action.payload.Web,
         Site: action.payload.Site,
-        SpLists: action.payload.SpLists,
         IsLoading: false
       };
     }

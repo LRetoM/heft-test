@@ -5,31 +5,32 @@ import { Link, Panel, PanelType, PrimaryButton, Spinner, SpinnerSize } from '@fl
 import { useAppDispatch, useAppSelector } from '../../ApiExplorerWebPart';
 import { CommonsState } from '../../../../stateModels/CommonsState';
 import { DocumentLibrariesState } from '../../../../stateModels/DocumentLibrariesState';
-import { DocumentLibrariesService } from '../../../../services/DocumentLibrariesService';
-import { DocumentLibrary } from '../../../../models/DocumentLibrary';
+import { SharePointListService } from '../../../../services/SharePointListService';
+import { SharePointList } from '../../../../models/SharePointList';
+import { SpListTemplates } from '../../../../constants/SpQueryConstants';
 import { LOADING_DOCUMENT_LIBRARIES, START_LOADING_DOCUMENT_LIBRARIES } from '../../../../redux/reducers/DocumentLibrariesStateReducer';
 import { DocumentLibraryEditComponent } from './DocumentLibraryEditComponent';
 
-const EMPTY_LIBRARY: DocumentLibrary = new DocumentLibrary();
+const EMPTY_LIBRARY: SharePointList = new SharePointList();
 
 export const DocumentLibrariesComponent: React.FunctionComponent = () => {
   const dispatch = useAppDispatch();
   const commonsState: CommonsState = useAppSelector(state => state.commonsState);
   const documentLibrariesState: DocumentLibrariesState = useAppSelector(state => state.documentLibrariesState);
 
-  const [selectedLibrary, setSelectedLibrary] = React.useState<DocumentLibrary>(undefined);
+  const [selectedLibrary, setSelectedLibrary] = React.useState<SharePointList>(undefined);
   const [isPanelOpen, setIsPanelOpen] = React.useState(false);
 
   const getDocumentLibraries = async (): Promise<void> => {
     dispatch(START_LOADING_DOCUMENT_LIBRARIES());
-    dispatch(LOADING_DOCUMENT_LIBRARIES(await DocumentLibrariesService.getDocumentLibraries(commonsState)));
+    dispatch(LOADING_DOCUMENT_LIBRARIES(await SharePointListService.getLists(commonsState, SpListTemplates.DocumentLibrary)));
   };
 
   React.useEffect(() => {
     getDocumentLibraries().catch(async (error: Error) => commonsState.SpFxCore.getSPFxCoreLoggingService().handleError(error, 'DocumentLibrariesComponent:'));
   }, []);
 
-  const openPanel = (library: DocumentLibrary): void => {
+  const openPanel = (library: SharePointList): void => {
     setSelectedLibrary(library);
     setIsPanelOpen(true);
   };
