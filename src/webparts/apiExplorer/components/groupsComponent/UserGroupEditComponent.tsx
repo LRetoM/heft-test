@@ -31,28 +31,34 @@ export const UserGroupEditComponent: React.FunctionComponent<IUserGroupEditCompo
 
     setErrorMessage(undefined);
     setIsSaving(true);
-    const group = await GroupService.joinGroup(commonsState, tempGroup.id);
-    setIsSaving(false);
+    try {
+      const group = await GroupService.joinGroup(commonsState, tempGroup.id);
 
-    if (group === undefined) {
-      setErrorMessage(strings.Groups.Panel.ErrorMessages.ErrorWhileJoining);
-      return;
+      if (group === undefined) {
+        setErrorMessage(strings.Groups.Panel.ErrorMessages.ErrorWhileJoining);
+        return;
+      }
+      dispatch(ADD_GROUP(group));
+      properties.closePanel();
+    } finally {
+      setIsSaving(false);
     }
-    dispatch(ADD_GROUP(group));
-    properties.closePanel();
   };
 
   const leaveGroup = async (): Promise<void> => {
     setIsSaving(true);
-    const success = await GroupService.leaveGroup(commonsState, tempGroup);
-    setIsSaving(false);
+    try {
+      const success = await GroupService.leaveGroup(commonsState, tempGroup);
 
-    if (!success) {
-      setErrorMessage(strings.Groups.Panel.ErrorMessages.ErrorWhileLeaving);
-      return;
+      if (!success) {
+        setErrorMessage(strings.Groups.Panel.ErrorMessages.ErrorWhileLeaving);
+        return;
+      }
+      dispatch(REMOVE_GROUP(tempGroup));
+      properties.closePanel();
+    } finally {
+      setIsSaving(false);
     }
-    dispatch(REMOVE_GROUP(tempGroup));
-    properties.closePanel();
   };
 
   return (

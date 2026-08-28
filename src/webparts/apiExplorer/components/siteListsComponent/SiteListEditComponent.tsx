@@ -31,28 +31,34 @@ export const SiteListEditComponent: React.FunctionComponent<ISiteListEditCompone
 
     setErrorMessage(undefined);
     setIsSaving(true);
-    const list = await SharePointListService.saveAndUpdate(commonsState, tempList, SpListTemplates.GenericList);
-    setIsSaving(false);
+    try {
+      const list = await SharePointListService.saveAndUpdate(commonsState, tempList, SpListTemplates.GenericList);
 
-    if (list === undefined) {
-      setErrorMessage(strings.SiteLists.Panel.ErrorMessages.ErrorWhileSaving);
-      return;
+      if (list === undefined) {
+        setErrorMessage(strings.SiteLists.Panel.ErrorMessages.ErrorWhileSaving);
+        return;
+      }
+      dispatch(ADD_UPDATE_SITE_LIST(list));
+      properties.closePanel();
+    } finally {
+      setIsSaving(false);
     }
-    dispatch(ADD_UPDATE_SITE_LIST(list));
-    properties.closePanel();
   };
 
   const deleteList = async (): Promise<void> => {
     setIsSaving(true);
-    const success = await SharePointListService.deleteList(commonsState, tempList);
-    setIsSaving(false);
+    try {
+      const success = await SharePointListService.deleteList(commonsState, tempList);
 
-    if (!success) {
-      setErrorMessage(strings.SiteLists.Panel.ErrorMessages.ErrorWhileDeleting);
-      return;
+      if (!success) {
+        setErrorMessage(strings.SiteLists.Panel.ErrorMessages.ErrorWhileDeleting);
+        return;
+      }
+      dispatch(REMOVE_SITE_LIST(tempList));
+      properties.closePanel();
+    } finally {
+      setIsSaving(false);
     }
-    dispatch(REMOVE_SITE_LIST(tempList));
-    properties.closePanel();
   };
 
   return (

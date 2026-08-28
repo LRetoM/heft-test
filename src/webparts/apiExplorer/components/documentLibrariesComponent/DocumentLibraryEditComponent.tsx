@@ -31,28 +31,34 @@ export const DocumentLibraryEditComponent: React.FunctionComponent<IDocumentLibr
 
     setErrorMessage(undefined);
     setIsSaving(true);
-    const library = await SharePointListService.saveAndUpdate(commonsState, tempLibrary, SpListTemplates.DocumentLibrary);
-    setIsSaving(false);
+    try {
+      const library = await SharePointListService.saveAndUpdate(commonsState, tempLibrary, SpListTemplates.DocumentLibrary);
 
-    if (library === undefined) {
-      setErrorMessage(strings.DocumentLibraries.Panel.ErrorMessages.ErrorWhileSaving);
-      return;
+      if (library === undefined) {
+        setErrorMessage(strings.DocumentLibraries.Panel.ErrorMessages.ErrorWhileSaving);
+        return;
+      }
+      dispatch(ADD_UPDATE_DOCUMENT_LIBRARY(library));
+      properties.closePanel();
+    } finally {
+      setIsSaving(false);
     }
-    dispatch(ADD_UPDATE_DOCUMENT_LIBRARY(library));
-    properties.closePanel();
   };
 
   const deleteLibrary = async (): Promise<void> => {
     setIsSaving(true);
-    const success = await SharePointListService.deleteList(commonsState, tempLibrary);
-    setIsSaving(false);
+    try {
+      const success = await SharePointListService.deleteList(commonsState, tempLibrary);
 
-    if (!success) {
-      setErrorMessage(strings.DocumentLibraries.Panel.ErrorMessages.ErrorWhileDeleting);
-      return;
+      if (!success) {
+        setErrorMessage(strings.DocumentLibraries.Panel.ErrorMessages.ErrorWhileDeleting);
+        return;
+      }
+      dispatch(REMOVE_DOCUMENT_LIBRARY(tempLibrary));
+      properties.closePanel();
+    } finally {
+      setIsSaving(false);
     }
-    dispatch(REMOVE_DOCUMENT_LIBRARY(tempLibrary));
-    properties.closePanel();
   };
 
   return (

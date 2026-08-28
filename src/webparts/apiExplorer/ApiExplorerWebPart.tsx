@@ -24,7 +24,6 @@ export default class ApiExplorerWebPart extends BaseClientSideWebPart<Record<str
 
   protected async onInit(): Promise<void> {
     this._spFxCore = new spfxCore.SpFxCoreLibrary(this.context);
-
     return super.onInit();
   }
 
