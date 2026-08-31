@@ -28,7 +28,9 @@ export class SharePointListService {
       if (list.Id === undefined) {
         const addedList = await commonsState.SharePointConnection.web.lists.add(list.Title, list.Description, template);
 
-        result = { Id: addedList.Id, Title: addedList.Title, Description: addedList.Description, DefaultViewUrl: addedList.DefaultViewUrl, ItemCount: addedList.ItemCount, BaseTemplate: addedList.BaseTemplate };
+        result = await commonsState.SharePointConnection.web.lists
+          .getById(addedList.Id)
+          .select(...SpListSelectFields.Lists)();
       } else {
         await commonsState.SharePointConnection.web.lists.getById(list.Id).update({
           Title: list.Title,
